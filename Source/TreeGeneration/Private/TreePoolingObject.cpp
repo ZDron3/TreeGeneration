@@ -29,9 +29,11 @@ void UTreePoolingObject::CreateRandomGeneratedTrees(uint32 TotaltreeCount)
 		{
 			FActorSpawnParameters SpawnInfo;
 			ATreePoolActor* poolActor = World->SpawnActor<ATreePoolActor>(FVector().ZeroVector, FRotator().ZeroRotator, SpawnInfo);
-			poolActor->SetTreeProperties();
+			poolActor->SetTreeProperties(treestruct.positionX, treestruct.positionY, treestruct.positionZ, treestruct.height, treestruct.canopyRadius);
 			poolActor->bisAvailable = false;
+			poolActor->AddActorToWorld();
 			TreePool.Add(poolActor);
+			
 		}
 	}
 

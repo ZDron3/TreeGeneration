@@ -13,18 +13,18 @@
  * 
  */
  using namespace std;
+ USTRUCT()
+	 struct FTreeStruct
+ {
+	 GENERATED_BODY()
 
-USTRUCT()
-struct FTreeStruct
-{
-	GENERATED_BODY()
-	
-	float positionX;
-	float positionY;
-	float positionZ;
-	float height;
-	float canopyRadius;
-};
+		 float positionX;
+	 float positionY;
+	 float positionZ;
+	 float height;
+	 float canopyRadius;
+ };
+
 
 UCLASS()
 class TREEGENERATION_API UTreePoolingObject : public UObject

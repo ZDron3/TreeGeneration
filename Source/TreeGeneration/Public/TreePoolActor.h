@@ -13,7 +13,7 @@ class TREEGENERATION_API ATreePoolActor : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	ATreePoolActor(const FObjectInitializer& ObjectInitializer);
+	ATreePoolActor();
 
 protected:
 	// Called when the game starts or when spawned
@@ -37,13 +37,17 @@ public:
 
 	bool bisAvailable;
 
+	FTransform TreeTransform;
+
+	UStaticMesh* MAsset;
+
 		//Functions
 
 	/*UFUNCTION(BlueprintCallable, Category = "YourGame")
 	FVector GetStaticMeshSize(class UStaticMesh* Mesh);
 */
 	UFUNCTION(BlueprintCallable,Category="SetProperties")
-	void SetTreeProperties();
+	void SetTreeProperties(float positionX, float positionY, float positionZ, float height, float canopyRadius); //replace with tree struct later
 
 	UFUNCTION(BlueprintCallable, Category = "SetProperties")
 	void AddActorToWorld();
