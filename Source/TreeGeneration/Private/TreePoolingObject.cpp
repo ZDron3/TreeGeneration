@@ -8,10 +8,9 @@ UTreePoolingObject::UTreePoolingObject(const FObjectInitializer& ObjectInitializ
 }
 
 
-TArray<FTreeStruct>& UTreePoolingObject::CreateRandomGeneratedTrees(uint32 TotaltreeCount)
+void UTreePoolingObject::CreateRandomGeneratedTrees(uint32 TotaltreeCount)
 {
 	treePool.Reserve(TotaltreeCount);
-
 	std::default_random_engine generator;
 	std::uniform_real_distribution<float> positionDistribution(0.0, 100000.0);
 	std::uniform_real_distribution<float> heightDistribution(2.0, 10000.0);
@@ -25,9 +24,18 @@ TArray<FTreeStruct>& UTreePoolingObject::CreateRandomGeneratedTrees(uint32 Total
 		treestruct.positionZ = positionDistribution(generator);
 		treestruct.height = heightDistribution(generator);
 		treestruct.canopyRadius = canopyRadiusDistribution(generator);
+		UWorld* const World = GetWorld();
+		if (World) 
+		{
+			FActorSpawnParameters SpawnInfo;
+			ATreePoolActor* poolActor = World->SpawnActor<ATreePoolActor>(FVector().ZeroVector, FRotator().ZeroRotator, SpawnInfo);
+			poolActor->SetTreeProperties();
+			poolActor->bisAvailable = false;
+			TreePool.Add(poolActor);
+		}
 	}
 
-	return treePool;
+	/*return treePool;*/
 }
 
 ATreePoolActor * UTreePoolingObject::GetPooledObject()

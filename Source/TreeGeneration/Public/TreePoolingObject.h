@@ -6,6 +6,7 @@
 #include "UObject/NoExportTypes.h"
 #include <random>
 #include "TreePoolActor.h"
+#include "Engine/World.h"
 #include "TreePoolingObject.generated.h"
 
 /**
@@ -38,7 +39,11 @@ class TREEGENERATION_API UTreePoolingObject : public UObject
 
 	uint32 TotaltreeSize;
 
-	TArray<FTreeStruct>& CreateRandomGeneratedTrees(uint32 TotaltreeCount);	
+	void CreateRandomGeneratedTrees(uint32 TotaltreeCount);	
+
+	UPROPERTY(EditAnywhere, Category = "ObjectPooler")
+	TSubclassOf<class ATreePoolActor> PooledObjectSubclass;
+
 
 	TArray<ATreePoolActor*> TreePool;
 

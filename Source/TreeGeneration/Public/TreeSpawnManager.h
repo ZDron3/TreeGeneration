@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "TreePoolingObject.h"
 #include "TreeSpawnManager.generated.h"
 
 UCLASS()
@@ -20,7 +21,15 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable, Category ="SpawnTree")
+	void SpawnTrees();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner")
+	UTreePoolingObject* ActorPooler;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Spawner")
+	int TotalTreesCount;
+
 
 };

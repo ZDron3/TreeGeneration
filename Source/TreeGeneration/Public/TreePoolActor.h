@@ -46,5 +46,5 @@ public:
 	void SetTreeProperties();
 
 	UFUNCTION(BlueprintCallable, Category = "SetProperties")
-	void AddActorToWorld()
+	void AddActorToWorld();
 };
