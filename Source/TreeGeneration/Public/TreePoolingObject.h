@@ -6,7 +6,6 @@
 #include "UObject/NoExportTypes.h"
 #include <random>
 #include "TreePoolActor.h"
-#include "Engine/World.h"
 #include "TreePoolingObject.generated.h"
 
 /**
@@ -18,7 +17,7 @@
  {
 	 GENERATED_BODY()
 
-		 float positionX;
+	 float positionX;
 	 float positionY;
 	 float positionZ;
 	 float height;
@@ -41,12 +40,12 @@ class TREEGENERATION_API UTreePoolingObject : public UObject
 
 	void CreateRandomGeneratedTrees(uint32 TotaltreeCount);	
 
-	UPROPERTY(EditAnywhere, Category = "ObjectPooler")
-	TSubclassOf<class ATreePoolActor> PooledObjectSubclass;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner")
+	ATreeSpawnActor* treeSpawnInstanceMeshActor;
 
+	UFUNCTION(BlueprintCallable, Category = "Spawner")
+	TArray<float>& GetPooledObjectDetails(int TreeIndex);
 
-	TArray<ATreePoolActor*> TreePool;
-
-	ATreePoolActor* GetPooledObject();
+	TArray<float> TreeDetails;
 
 };

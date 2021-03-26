@@ -31,5 +31,4 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Spawner")
 	int TotalTreesCount;
 
-
 };

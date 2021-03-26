@@ -3,17 +3,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
-#include "PlayerCharacter.generated.h"
+#include "GameFramework/Character.h"
+#include "MyPlayerCharacter.generated.h"
 
 UCLASS()
-class TREEGENERATION_API APlayerCharacter : public APawn
+class TREEGENERATION_API AMyPlayerCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	APlayerCharacter();
+	// Sets default values for this character's properties
+	AMyPlayerCharacter();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,16 +26,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-		UFUNCTION()
-		void Forward_Backward(float AxisValue);
+	
+	UFUNCTION()
+	void Forward_Backward(float AxisValue);
 
 	UFUNCTION()
-		void Left_Right(float AxisValue);
+	void Left_Right(float AxisValue);
 
 	UFUNCTION()
-		void MouseClickLeft();
-
-	FVector CurrentVelocity;
+	void MouseClickLeft();
 
 
 };

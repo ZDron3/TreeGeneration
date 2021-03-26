@@ -1,12 +1,22 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "TreePoolingObject.h"
+#include "Engine/World.h"
 
 UTreePoolingObject::UTreePoolingObject(const FObjectInitializer& ObjectInitializer)
-:Super(ObjectInitializer)
+	:Super(ObjectInitializer)
 {
-	TotaltreeSize = 1000;
-}
+	TotaltreeSize = 100000;
+	FActorSpawnParameters SpawnLocation;
+	UWorld* world = GetWorld();
+	if (world)
+	{
+		FActorSpawnParameters SpawnInfo;
 
+		FRotator myRot(0, 0, 0);
+		FVector myLoc(0, 0, 100);
+		treeSpawnInstanceMeshActor = GetWorld()->SpawnActor<ATreeSpawnActor>( myLoc, myRot, SpawnInfo);
+	}
+}
 
 void UTreePoolingObject::CreateRandomGeneratedTrees(uint32 TotaltreeCount)
 {
@@ -24,31 +34,23 @@ void UTreePoolingObject::CreateRandomGeneratedTrees(uint32 TotaltreeCount)
 		treestruct.positionZ = positionDistribution(generator);
 		treestruct.height = heightDistribution(generator);
 		treestruct.canopyRadius = canopyRadiusDistribution(generator);
-		UWorld* const World = GetWorld();
-		if (World) 
+		treePool.Add(treestruct);
+		if (treeSpawnInstanceMeshActor)
 		{
-			FActorSpawnParameters SpawnInfo;
-			ATreePoolActor* poolActor = World->SpawnActor<ATreePoolActor>(FVector().ZeroVector, FRotator().ZeroRotator, SpawnInfo);
-			poolActor->SetTreeProperties(treestruct.positionX, treestruct.positionY, treestruct.positionZ, treestruct.height, treestruct.canopyRadius);
-			poolActor->bisAvailable = false;
-			poolActor->AddActorToWorld();
-			TreePool.Add(poolActor);
-			
+			treeSpawnInstanceMeshActor->SetTreePropertiesAndRender(treestruct.positionX, treestruct.positionY, treestruct.positionZ, treestruct.height, treestruct.canopyRadius);
 		}
-	}
 
-	/*return treePool;*/
+	}
 }
 
-ATreePoolActor * UTreePoolingObject::GetPooledObject()
+TArray<float>& UTreePoolingObject::GetPooledObjectDetails(int TreeIndex)
 {
-	for (ATreePoolActor* PoolableActor : TreePool)
+	if (TreeIndex != -1)
 	{
-		if (!PoolableActor->bisAvailable) {
-			return PoolableActor;
-		}
+		TreeDetails.Empty();
+		TreeDetails.Add(treePool[TreeIndex].height);
+		TreeDetails.Add(treePool[TreeIndex].canopyRadius);
 	}
-	/* pool is drained, no inactive objects found */
-	return nullptr;
+	return TreeDetails;
 }
 

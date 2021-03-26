@@ -7,17 +7,15 @@
 #include "TreePoolActor.generated.h"
 
 UCLASS()
-class TREEGENERATION_API ATreePoolActor : public AActor
+class TREEGENERATION_API ATreeSpawnActor : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ATreePoolActor();
+	ATreeSpawnActor();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
 public:	
 	// Called every frame
@@ -29,26 +27,15 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UHierarchicalInstancedStaticMeshComponent* TreeMesh;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	float TreeLength;
+private:
+	float TreeRadiusScaleFactor;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float TreeCanopyRadius;
+	float TreeLengthScaleFactor;
 
-	bool bisAvailable;
+public:
 
-	FTransform TreeTransform;
-
-	UStaticMesh* MAsset;
-
-		//Functions
-
-	/*UFUNCTION(BlueprintCallable, Category = "YourGame")
-	FVector GetStaticMeshSize(class UStaticMesh* Mesh);
-*/
+	//Functions
 	UFUNCTION(BlueprintCallable,Category="SetProperties")
-	void SetTreeProperties(float positionX, float positionY, float positionZ, float height, float canopyRadius); //replace with tree struct later
+	void SetTreePropertiesAndRender(float positionX, float positionY, float positionZ, float height, float canopyRadius); //replace with tree struct later
 
-	UFUNCTION(BlueprintCallable, Category = "SetProperties")
-	void AddActorToWorld();
 };
