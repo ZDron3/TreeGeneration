@@ -1,6 +1,6 @@
 # TreeGeneration
 
-###### Random Tree Creation generator consists of around 100K Randomly generated tree using UE4
+###### Random Tree Creation generator consists of around 100K Randomly generated tree using UE4 with optimized Hierarchical Instanced Static Mesh
 
 ## Instructions
 
@@ -9,7 +9,7 @@ Use **W,A,S,D** to move around the game using Mouse Axis to look around. Use **L
 ## How it Works
 
 We are generating a random struct with values for the position, height and radius for the tree, thereafter we pool these struct and use them to render the trees
-I am using *Hierarchical Instanced Static Mesh Component* instead of using regular *StaticMesh* for the tree as this reduces the total number of draw calls by batching them together thereby optimizing the performance and helping us push the limitation for rendering multiple (same kind of objects). This HISM Component is prefered over *InstanceStaticMeshComponent* is that even though they work the same way, HISM helps us maintain the LOD(Level of details) integrity for each of the Static Mesh added to world by HISM.
+I am using *Hierarchical Instanced Static Mesh Component* instead of using regular *StaticMesh* for the tree as this reduces the total number of draw calls by batching them together thereby optimizing the performance and helping us push the limitation for rendering multiple (same kind of objects). This HISM Component is prefered over *InstanceStaticMeshComponent* is that even though they work the same way, HISM helps us maintain the LOD(Level of details) integrity for each of the Static Mesh added to world by HISM, with this method we are able to achieve around *100K* trees at 60fps, with some optimizations applied to the HISM.
 
 ###### Video
 
