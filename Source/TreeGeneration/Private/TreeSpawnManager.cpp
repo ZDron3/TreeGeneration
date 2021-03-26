@@ -7,7 +7,7 @@
 ATreeSpawnManager::ATreeSpawnManager()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	ActorPooler = CreateDefaultSubobject<UTreePoolingObject>(TEXT("ActorPooler"));
+	ObejctPooler = CreateDefaultSubobject<UTreePoolingObject>(TEXT("ActorPooler"));
 	TotalTreesCount = 100000;
 }
 
@@ -21,6 +21,6 @@ void ATreeSpawnManager::BeginPlay()
 
 void ATreeSpawnManager::SpawnTrees()
 {
-	ActorPooler->CreateRandomGeneratedTrees(TotalTreesCount);
+	ObejctPooler->CreateRandomGeneratedTrees(TotalTreesCount);
 }
 

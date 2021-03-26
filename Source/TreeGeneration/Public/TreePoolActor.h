@@ -28,9 +28,9 @@ public:
 	class UHierarchicalInstancedStaticMeshComponent* TreeMesh;
 
 private:
-	float TreeRadiusScaleFactor;
+	float TreeRadiusScaleFactor;	//radius factor used to scale of the canopy for trees 
 
-	float TreeLengthScaleFactor;
+	float TreeLengthScaleFactor;	//height factor used to scale of the height tree
 
 public:
 

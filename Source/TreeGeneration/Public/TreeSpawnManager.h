@@ -11,7 +11,7 @@ UCLASS()
 class TREEGENERATION_API ATreeSpawnManager : public AActor
 {
 	GENERATED_BODY()
-	
+	//A Managerclass actor that is placed in level created an objectpool 
 public:	
 	// Sets default values for this actor's properties
 	ATreeSpawnManager();
@@ -26,7 +26,7 @@ public:
 	void SpawnTrees();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner")
-	UTreePoolingObject* ActorPooler;
+	UTreePoolingObject* ObejctPooler;           //Trees pool object
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Spawner")
 	int TotalTreesCount;

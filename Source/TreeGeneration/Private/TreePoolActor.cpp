@@ -7,6 +7,7 @@
 // Sets default values
 ATreeSpawnActor::ATreeSpawnActor()
 {
+	//Create and set the required static mesh for UHierarchicalInstancedStaticMeshComponent to render
 	if (!TreeMesh)
 	{
 		TreeMesh = CreateDefaultSubobject<UHierarchicalInstancedStaticMeshComponent>(TEXT("TreeStaticMesh"));
@@ -27,7 +28,7 @@ ATreeSpawnActor::ATreeSpawnActor()
 
 void ATreeSpawnActor::SetTreePropertiesAndRender(float positionX, float positionY, float positionZ, float height, float canopyRadius)
 {
-
+	//Set the tree properties to the staticemesh actor and add instance to world using HierarchicalInstancedStaticMeshComponent
 	if(!TreeMesh->GetStaticMesh())
 	{
 		UE_LOG(LogTemp, Error, TEXT("Static Mesh not set in Hierarchical Instanced Static Mesh reference"));

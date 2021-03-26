@@ -5,6 +5,7 @@
 UTreePoolingObject::UTreePoolingObject(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
+	//create an actor of static mesh that renders instances
 	TotaltreeSize = 100000;
 	FActorSpawnParameters SpawnLocation;
 	UWorld* world = GetWorld();
@@ -37,11 +38,14 @@ void UTreePoolingObject::CreateRandomGeneratedTrees(uint32 TotaltreeCount)
 		treePool.Add(treestruct);
 		if (treeSpawnInstanceMeshActor)
 		{
+			//set the random generator tree properties to the tree actor
 			treeSpawnInstanceMeshActor->SetTreePropertiesAndRender(treestruct.positionX, treestruct.positionY, treestruct.positionZ, treestruct.height, treestruct.canopyRadius);
 		}
 
 	}
 }
+
+//Details for pooled objects to show the required details in widegt
 
 TArray<float>& UTreePoolingObject::GetPooledObjectDetails(int TreeIndex)
 {
