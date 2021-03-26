@@ -45,7 +45,7 @@ void UTreePoolingObject::CreateRandomGeneratedTrees(uint32 TotaltreeCount)
 
 TArray<float>& UTreePoolingObject::GetPooledObjectDetails(int TreeIndex)
 {
-	if (TreeIndex != -1)
+	if (TreeIndex != -1 && TreeIndex < treePool.Num())
 	{
 		TreeDetails.Empty();
 		TreeDetails.Add(treePool[TreeIndex].height);
